@@ -1,0 +1,9 @@
+site/*.md
+site/storage/framework/cache/*
+site/storage/framework/sessions/*
+site/storage/framework/views/*
+site/storage/logs/*
+site/storage/temp/*
+site/storage/system.log
+site/storage/laravel.log
+.DS_Store

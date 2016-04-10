@@ -1,0 +1,32 @@
+web:
+  build: ./
+  ports:
+    - "8080:80"
+  environment:
+    DB_HOST: db
+    DB_NAME: october_db
+    DB_PASSWORD: 'october-passwd'
+    DB_PREFIX: myoctober_
+    DB_USER: october_user
+    LINK_POLICY: detect
+    REDIS_HOST: redis_session_storage
+    OCTOBER_DEBUG: 'true'
+  entrypoint: '/wait-for-it.sh db:3306 -- /run.sh'
+  links:
+    - redis_session_storage
+    - db
+  volumes:
+    - './site:/usr/share/nginx/html'
+redis_session_storage:
+  image: redis
+  ports:
+    - '6379:6379'
+db:
+  image: mariadb
+  ports:
+    - '3306:3306'
+  environment:
+    MYSQL_USER: october_user
+    MYSQL_PASSWORD: 'october-passwd'
+    MYSQL_ROOT_PASSWORD: 'my-secret-pw'
+    MYSQL_DATABASE: october_db
