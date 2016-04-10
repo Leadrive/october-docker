@@ -7,6 +7,8 @@ $ docker-compose build
 $ docker-compose up
 ```
 
+Then, run `docker exec octoberdocker_web_1 composer install`.
+
 # Build Process
 To start development for a new release, first bump the version in the Makefile.
 If a configuration has changed, bump the RELEASE.
